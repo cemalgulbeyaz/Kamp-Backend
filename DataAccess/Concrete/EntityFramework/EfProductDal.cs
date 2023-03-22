@@ -31,5 +31,25 @@ namespace DataAccess.Concrete.EntityFramework
                 return result.ToList();
             }
         }
+
+        public List<ProductWithCategoryDto> GetAllProductsWithCategory()
+        {
+            using (NorthwindContext context = new NorthwindContext())
+            {
+                var result = from p in context.Products
+                             join c in context.Categories
+                             on p.CategoryId equals c.CategoryId
+                             select new ProductWithCategoryDto
+                             {
+                                 ProductId = p.ProductId,
+                                 ProductName = p.ProductName,
+                                 CategoryId = p.CategoryId,
+                                 CategoryName = c.CategoryName,
+                                 UnitsInStock = p.UnitsInStock,
+                                 UnitPrice = p.UnitPrice
+                             };
+                return result.ToList();
+            }
+        }
     }
 }

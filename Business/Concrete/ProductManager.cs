@@ -145,6 +145,15 @@ namespace Business.Concrete
                 );
             //return _productDal.GetProductDetails();
         }
+        public IDataResult<List<ProductWithCategoryDto>> GetAllProductsWithCategory()
+        {
+            return new SuccessDataResult<List<ProductWithCategoryDto>>
+                (
+                _productDal.GetAllProductsWithCategory(),
+                Messages.ProductsListed
+                );
+            //return _productDal.GetProductDetails();
+        }
 
         //[ValidationAspect(typeof(ProductValidator))]
         //[CacheRemoveAspect("IProductService.Get")] // methodu başarı ile tamamlanırsa paterne uyan tüm cache'ler silinir
